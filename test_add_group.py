@@ -44,7 +44,6 @@ class TestAddGroup(unittest.TestCase):
         except NoAlertPresentException as e: return False
         return True
 
-
     def tearDown(self):
         self.wd.quit()
 
