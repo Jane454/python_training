@@ -22,32 +22,11 @@ class Application:
 
 
 
-    def login(self, username, password):
-        # login
-        wd = self.wd
-        self.open_home_page()
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
-
-    def open_home_page(self):
-        # open home page
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
 
     def open_contact_page(self):
         # open contact page
         wd = self.wd
         wd.find_element_by_link_text("add new").click()
-
-    def logout(self):
-        # logout
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
 
     def return_contact_page(self):
         # return to contact page
