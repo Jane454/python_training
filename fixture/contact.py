@@ -22,7 +22,6 @@ class ContactHelper:
 
     def create(self, contact):
         wd = self.app.wd
-     #   sel = self.app.sel
         self.open_contact_page()
         # fill contact form
         wd.find_element_by_name("firstname").click()
@@ -75,19 +74,19 @@ class ContactHelper:
         wd.find_element_by_name("homepage").send_keys(contact.homepage)
         wd.find_element_by_name("bday").click()
         Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
-        wd.find_element_by_xpath("//option[@value='3']").click()
+        wd.find_element_by_xpath("//option[@value='" + contact.bday + "']").click()
         wd.find_element_by_name("bmonth").click()
         Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
-        wd.find_element_by_xpath("//option[@value='January']").click()
+        wd.find_element_by_xpath("//option[@value='" + contact.bmonth + "']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
         wd.find_element_by_name("byear").send_keys(contact.ayear)
         wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
-        wd.find_element_by_xpath("//option[@value='4']").click()
+        wd.find_element_by_xpath("//option[@value='" + contact.aday + "']").click()
         wd.find_element_by_name("amonth").click()
         Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
-        wd.find_element_by_xpath("//option[@value='November']").click()
+        wd.find_element_by_xpath("//option[@value='" + contact.amonth + "']").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact.ayear)
