@@ -7,12 +7,11 @@ class ContactHelper:
         self.app = app
 
     def open_contact_page(self):
-        # open contact page
         wd = self.app.wd
-        wd.find_element_by_link_text("add new").click()
+        if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("photo")) > 0):
+            wd.find_element_by_link_text("add new").click()
 
     def return_contact_page(self):
-        # return to contact page
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
