@@ -119,4 +119,3 @@ class ContactHelper:
         self.fill_contact(contact, wd)
         wd.find_element_by_name("update").click()
 
-       # wd.switch_to_alert().accept()
