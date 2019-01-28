@@ -6,12 +6,12 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def open_contact_page(self):
+    def open_home_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("photo")) > 0):
-            wd.find_element_by_link_text("add new").click()
+        if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("searchstring")) > 0):
+            wd.find_element_by_link_text("home").click()
 
-    def return_contact_page(self):
+    def open_add_contact_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("photo")) > 0):
             wd.find_element_by_link_text("add new").click()
@@ -23,11 +23,11 @@ class ContactHelper:
 
     def create(self, contact):
         wd = self.app.wd
-        self.open_contact_page()
+        self.open_add_contact_page()
         # fill contact form
         self.fill_contact(contact, wd)
         self.submit_contact_creation()
-        self.return_contact_page()
+        self.open_home_page()
 
     def fill_contact(self, contact, wd):
         wd.find_element_by_name("firstname").click()
@@ -108,7 +108,7 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         # return to contact page
         time.sleep(2)
-        self.return_contact_page()
+        self.open_home_page()
 
     def edit_first_contact(self, contact):
         wd = self.app.wd
@@ -121,7 +121,7 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        self.open_contact_page()
+        self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
 
