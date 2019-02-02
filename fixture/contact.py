@@ -26,12 +26,13 @@ class ContactHelper:
         wd = self.app.wd
         self.open_add_contact_page()
         # fill contact form
-        self.fill_contact(contact, wd)
+        self.fill_contact(contact)
         self.submit_contact_creation()
         self.open_home_page()
         self.contact_cache = None
 
-    def fill_contact(self, contact, wd):
+    def fill_contact(self, contact):
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -100,11 +101,14 @@ class ContactHelper:
         wd.find_element_by_name("ayear").send_keys(contact.ayear)
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         # open home page with contacts
         wd.find_element_by_link_text("home").click()
         # select first contact
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
         # delete contact
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
@@ -113,13 +117,16 @@ class ContactHelper:
         self.open_home_page()
         self.contact_cache = None
 
-    def edit_first_contact(self, contact):
+    def edit_first_contact(self):
+        self.edit_contact_by_index(0)
+
+    def edit_contact_by_index(self, index, contact):
         wd = self.app.wd
         # open home page with contacts
         wd.find_element_by_link_text("home").click()
         # edit first contact
-        wd.find_element_by_xpath("(//img[@alt='Edit'])[1]").click()
-        self.fill_contact(contact, wd)
+        wd.find_elements_by_xpath("(//img[@alt='Edit'])")[index].click()
+        self.fill_contact(contact)
         wd.find_element_by_name("update").click()
         self.contact_cache = None
 
