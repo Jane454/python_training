@@ -186,7 +186,7 @@ class ContactHelper:
                 all_emails = cells[4].text
                 all_phones = cells[5].text
                 print(id, lastname, firstname, address, all_emails, all_phones)
-                self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=id, address=address,
+                self.contact_cache.append(Contact(firstname=firstname.strip(), lastname=lastname.strip(), id=id, address=address,
                                                   all_emails_from_home_page=all_emails, all_phones_from_home_page=all_phones))
 
         return list(self.contact_cache)

@@ -32,8 +32,9 @@ class DbFixture:
                            "work, fax, email, email2, email3 from addressbook where deprecated='0000-00-00 00:00:00'")
             for row in cursor:
                 (id, firstname, middlename, lastname, nickname, title, company, address, home, mobile, work, fax, email, email2, email3) = row
-                list.append(Contact(id=str(id),firstname=firstname, middlename=middlename, lastname=lastname, nickname=nickname, title=title,
-                 company=company, address=address, home=home, mobile=mobile, work=work, fax=fax, email=email, email2=email2, email3=email3))
+                list.append(Contact(id=str(id),firstname=firstname.strip(), middlename=middlename, lastname=lastname.strip(), nickname=nickname, title=title,
+                company=company, address=address, home=home, mobile=mobile, work=work, fax=fax, email=email, email2=email2, email3=email3,
+                all_phones_from_home_page=home.strip()+"\n"+mobile.strip()+"\n"+work.strip(), all_emails_from_home_page=email.strip()+"\n"+email2.strip()+"\n"+email3.strip()))
         finally:
             cursor.close()
         return list
