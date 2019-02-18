@@ -33,3 +33,5 @@ def test_add_contact_to_group(app):
 
     new_contacts = db.get_contact_list()
  #   assert sorted(new_contacts, key=Contact.id_or_max) == sorted(db.get_contact_list(), key=Contact.id_or_max)
+
+
